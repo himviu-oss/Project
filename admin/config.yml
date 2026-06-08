@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: himviu-oss/Project
+  branch: main
+
+media_folder: "images"
+
+collections:
+  - name: "data"
+    label: "Site Data"
+    files:
+      - name: "posts"
+        label: "Blog Posts"
+        file: "data/posts.json"
+        format: "json"
+        fields:
+          - name: "items"
+            label: "Posts"
+            widget: "list"
+            fields:
+              - { name: "slug", label: "Slug", widget: "string", hint: "URL-friendly identifier (e.g. my-post-title)" }
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "tag", label: "Tag", widget: "select", options: ["Rescue Stories", "Field Notes", "Welfare", "Behavior"] }
+              - { name: "date", label: "Date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - { name: "author", label: "Author", widget: "string", default: "Norman Yung" }
+              - { name: "cover", label: "Cover Image URL", widget: "string" }
+              - { name: "excerpt", label: "Excerpt", widget: "text" }
+              - { name: "featured", label: "Featured", widget: "boolean", default: false }
+              - { name: "body", label: "Body (HTML)", widget: "text" }

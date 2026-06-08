@@ -33,6 +33,24 @@ function initScrollHeader() {
   });
 }
 
+/* Date formatting helper */
+function formatDate(iso) {
+  var d = new Date(iso + "T00:00:00");
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
+
+/* Find post by slug */
+function getPostBySlug(posts, slug) {
+  for (var i = 0; i < posts.length; i++) {
+    if (posts[i].slug === slug) return posts[i];
+  }
+  return null;
+}
+
 /* Build a post card */
 function postCard(post) {
   return '<article class="card">' +
@@ -51,12 +69,12 @@ function postCard(post) {
 }
 
 /* Featured post (home) */
-function renderFeatured(el) {
+function renderFeatured(el, posts) {
   var post = null;
-  for (var i = 0; i < POSTS.length; i++) {
-    if (POSTS[i].featured) { post = POSTS[i]; break; }
+  for (var i = 0; i < posts.length; i++) {
+    if (posts[i].featured) { post = posts[i]; break; }
   }
-  if (!post) post = POSTS[0];
+  if (!post) post = posts[0];
 
   el.innerHTML = '<article class="featured">' +
     '<a class="card-media" href="post.html?slug=' + encodeURIComponent(post.slug) + '">' +
@@ -73,15 +91,15 @@ function renderFeatured(el) {
 }
 
 /* Recent posts grid (home) */
-function renderRecent(el, limit) {
+function renderRecent(el, posts, limit) {
   var featuredSlug = "";
-  for (var i = 0; i < POSTS.length; i++) {
-    if (POSTS[i].featured) { featuredSlug = POSTS[i].slug; break; }
+  for (var i = 0; i < posts.length; i++) {
+    if (posts[i].featured) { featuredSlug = posts[i].slug; break; }
   }
   var recent = [];
-  for (var j = 0; j < POSTS.length; j++) {
-    if (POSTS[j].slug !== featuredSlug) {
-      recent.push(POSTS[j]);
+  for (var j = 0; j < posts.length; j++) {
+    if (posts[j].slug !== featuredSlug) {
+      recent.push(posts[j]);
     }
     if (recent.length >= (limit || 3)) break;
   }
@@ -93,19 +111,19 @@ function renderRecent(el, limit) {
 }
 
 /* Full feed (blog page) */
-function renderFeed(el) {
+function renderFeed(el, posts) {
   var html = "";
-  for (var i = 0; i < POSTS.length; i++) {
-    html += postCard(POSTS[i]);
+  for (var i = 0; i < posts.length; i++) {
+    html += postCard(posts[i]);
   }
   el.innerHTML = html;
 }
 
 /* Single post page */
-function renderArticle() {
+function renderArticle(posts) {
   var params = new URLSearchParams(location.search);
   var slug = params.get("slug");
-  var post = getPostBySlug(slug);
+  var post = getPostBySlug(posts, slug);
   var mount = document.getElementById("article");
   if (!mount) return;
 
@@ -147,7 +165,7 @@ function initNewsletter() {
     var input = form.querySelector('input[type="email"]');
     if (input && input.value) {
       if (note) {
-        note.textContent = "Thank you! You're on the list. 🐾";
+        note.textContent = "Thank you! You're on the list. \uD83D\uDC3E";
         note.style.color = "#fff";
       }
       form.reset();
@@ -161,21 +179,34 @@ function initYear() {
   if (y) y.textContent = new Date().getFullYear();
 }
 
+/* Load posts from JSON and render the page */
+function loadPosts() {
+  fetch("data/posts.json")
+    .then(function(response) { return response.json(); })
+    .then(function(data) {
+      var posts = data.items;
+
+      var featuredEl = document.getElementById("featured");
+      if (featuredEl) renderFeatured(featuredEl, posts);
+
+      var recentEl = document.getElementById("recent-posts");
+      if (recentEl) renderRecent(recentEl, posts, 3);
+
+      var feedEl = document.getElementById("feed");
+      if (feedEl) renderFeed(feedEl, posts);
+
+      renderArticle(posts);
+    })
+    .catch(function(err) {
+      console.error("Failed to load posts:", err);
+    });
+}
+
 /* Boot */
 document.addEventListener("DOMContentLoaded", function() {
   initNav();
   initScrollHeader();
   initNewsletter();
   initYear();
-
-  var featuredEl = document.getElementById("featured");
-  if (featuredEl) renderFeatured(featuredEl);
-
-  var recentEl = document.getElementById("recent-posts");
-  if (recentEl) renderRecent(recentEl, 3);
-
-  var feedEl = document.getElementById("feed");
-  if (feedEl) renderFeed(feedEl);
-
-  renderArticle();
+  loadPosts();
 });
