@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - The Stray Dog Blog</title>
+  <meta name="description" content="About The Stray Dog Blog and the person behind it." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="paw">🐾</span> The Stray Dog Blog</a>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a class="active" href="about.html">About</a></li>
+        <li><a href="index.html#subscribe">Subscribe</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="page-header" style="background-image: linear-gradient(180deg, rgba(43,38,34,0.4), rgba(43,38,34,0.6)), url('https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&fit=crop&w=1600&q=80');">
+    <h1>About</h1>
+    <p>The story behind the stories.</p>
+  </section>
+
+  <main>
+    <section class="section container">
+      <div class="about-grid">
+        <div class="about-photo">
+          <img src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?auto=format&fit=crop&w=700&q=80" alt="A street dog resting in the sun" />
+        </div>
+        <div class="about-text">
+          <h1>Hi, I'm Norman</h1>
+          <p>The Stray Dog Blog started the way most good things do - by accident. One dog at a market, one decision to stop, and suddenly a whole world opened up.</p>
+          <p>These pages are part journal, part field guide. I write about the dogs I meet on the street, the routines that keep colonies healthy, the science of behavior and welfare, and the slow, stubborn work of building trust with animals who have every reason not to give it.</p>
+          <p>I'm not a vet or a big organization. I'm one person with a truck, a feeding route, and a belief that small, consistent kindness adds up. If reading this makes you look twice at the next stray you pass, the blog has done its job.</p>
+          <blockquote style="border-left:4px solid var(--brand);margin:28px 0;padding:12px 24px;color:var(--muted);font-style:italic;background:var(--brand-light);border-radius:0 10px 10px 0;">
+            Every dog has a story. Some of them just need someone to start writing it down.
+          </blockquote>
+          <p><a class="btn" href="blog.html">Read the stories</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">🐾 The Stray Dog Blog</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="container footer-bottom">
+      &copy; <span id="year"></span> The Stray Dog Blog. Made with love for the strays.
+    </div>
+  </footer>
+
+  <script src="js/posts.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

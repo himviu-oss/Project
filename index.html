@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Stray Dog Blog - Stories from the street</title>
+  <meta name="description" content="A personal blog about rescuing, feeding, and loving stray dogs - one story at a time." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="paw">🐾</span> The Stray Dog Blog</a>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+      <ul class="nav-links">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#subscribe">Subscribe</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Stories from the street</h1>
+    <p>Following the lives of stray dogs - the rescues, the routines, and the small moments of trust that change everything.</p>
+    <div class="hero-buttons">
+      <a class="btn" href="blog.html">Read the latest</a>
+      <a class="btn btn-ghost" href="about.html">Our story</a>
+    </div>
+  </section>
+
+  <main>
+    <!-- Featured -->
+    <section class="section container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Featured story</h2>
+          <p>The one we keep coming back to.</p>
+        </div>
+      </div>
+      <div id="featured"></div>
+    </section>
+
+    <!-- Recent -->
+    <section class="section container" style="padding-top:0">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Latest from the blog</h2>
+          <p>Field notes, rescues, and lessons learned.</p>
+        </div>
+        <a class="btn btn-outline" href="blog.html">View all</a>
+      </div>
+      <div class="post-grid" id="recent-posts"></div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section container" style="padding-top:0">
+      <div class="stats">
+        <div class="stat-item">
+          <h3>47</h3>
+          <p>Dogs rescued</p>
+        </div>
+        <div class="stat-item">
+          <h3>365</h3>
+          <p>Days on the route</p>
+        </div>
+        <div class="stat-item">
+          <h3>12</h3>
+          <p>Colonies monitored</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section container" id="subscribe">
+      <div class="newsletter">
+        <h2>Join the pack</h2>
+        <p>New stories delivered to your inbox. No spam, just dogs.</p>
+        <form class="subscribe-form" id="subscribe-form">
+          <input type="email" placeholder="you@example.com" aria-label="Email address" required />
+          <button class="btn" type="submit">Subscribe</button>
+        </form>
+        <div class="form-note" id="form-note"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">🐾 The Stray Dog Blog</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="container footer-bottom">
+      &copy; <span id="year"></span> The Stray Dog Blog. Made with love for the strays.
+    </div>
+  </footer>
+
+  <script src="js/posts.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
